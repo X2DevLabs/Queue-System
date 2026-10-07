@@ -1,6 +1,9 @@
 Config = {}
 
-Config.MaxPlayers = 32 -- Example value, adjust as necessary
+-- Leave as nil to use your sv_maxclients convar automatically.
+Config.MaxPlayers = nil
+
+Config.RequireSteam = true -- kick players who don't have Steam open
 
 Config.AcePermissions = {
     bypass = "queue.bypass",
@@ -13,8 +16,22 @@ Config.PriorityLevels = {
     default = 1
 }
 
+-- true: players with bypass skip the queue and join even when the server is full
+Config.BypassSkipsQueue = true
+
+Config.ReconnectGrace = 300 -- seconds a dropped player keeps their place in line
+Config.JoinTimeout = 120 -- seconds a released player may take to finish loading before their slot is freed
+Config.UpdateInterval = 5 -- seconds between queue position updates
+
 Config.QueueBanner = {
-    enabled = true, -- Set to false to disable the banner
+    enabled = true, -- false = plain text only
     text = "Welcome to Our Server! Please wait in the queue...",
-    imageUrl = "https://example.com/banner.png" -- URL of the image banner, if any
+    imageUrl = "https://example.com/banner.png" -- leave "" for no image
+}
+
+Config.Messages = {
+    position  = "You are in the queue. Position: %d/%d. Please wait...",
+    steam     = "You need to have Steam open to join this server.",
+    license   = "Couldn't find your Rockstar license. Restart FiveM and try again.",
+    duplicate = "You connected from another session."
 }
